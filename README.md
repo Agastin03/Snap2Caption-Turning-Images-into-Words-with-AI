@@ -5,33 +5,51 @@ An AI-powered web application that generates captions for images using advanced 
 
 🚀 Features
 🔐 User Authentication (Login & Register)
+
 🖼️ Image Upload (JPG, PNG, JPEG, WEBP)
+
 🤖 AI-Based Caption Generation
+
 🎭 Multiple Caption Styles:
 Descriptive
+
 Creative
+
 Technical
+
 Social Media
+
 ⚡ Real-time Processing
+
 📱 Simple and User-Friendly Interface
 
 
 🛠️ Tech Stack
+
 Backend: Flask (Python)
+
 Frontend: HTML, CSS (Templates)
+
 AI Model: OpenAI GPT-4 Vision API
+
 Authentication: Session-based login system
+
 Image Processing: Base64 Encoding
 
 
 📂 Project Structure
 ├── app.py
+
 ├── templates/
+
 │   ├── login.html
 │   ├── register.html
 │   ├── dashboard.html
+
 ├── uploads/
+
 ├── static/
+
 └── README.md
 
 
