@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Caption Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <span class="logo">🖼️</span>
+                <span>AI Caption Generator</span>
+            </div>
+            <div class="nav-user">
+                <span>Welcome, {{ name }}!</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-header">
+            <h1>Generate Image Captions</h1>
+            <p>Upload an image and let AI create the perfect caption</p>
+        </div>
+
+        <div class="settings-panel">
+            <div class="settings-title">Caption Settings</div>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="captionStyle">Caption Style</label>
+                    <select id="captionStyle">
+                        <option value="descriptive">Descriptive</option>
+                        <option value="creative">Creative</option>
+                        <option value="technical">Technical</option>
+                        <option value="social">Social Media</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="detailLevel">Detail Level <span class="range-value" id="detailValue">Medium</span></label>
+                    <input type="range" id="detailLevel" min="1" max="3" value="2">
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Click to upload or drag and drop</div>
+            <div class="upload-subtext">PNG, JPG, JPEG, WEBP (Max 5MB)</div>
+        </div>
+
+        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/webp" style="display: none;">
+
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <div class="image-preview">
+                <img id="imagePreview" src="" alt="Preview">
+            </div>
+
+            <div class="caption-section">
+                <div class="caption-label">Generated Caption</div>
+                <div class="caption-text" id="captionText"></div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-success" id="copyBtn" style="display: none;">
+                    📋 Copy Caption
+                </button>
+                <button class="btn btn-primary" id="regenerateBtn" style="display: none;">
+                    🔄 Regenerate
+                </button>
+                <button class="btn btn-secondary" id="newImageBtn">
+                    📤 Upload New Image
+                </button>
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage" style="display: none;"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
